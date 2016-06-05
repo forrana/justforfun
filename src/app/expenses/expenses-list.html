@@ -1,4 +1,40 @@
-<div *ngFor="let expense of expenses" (click)="selected.emit(expense)"
+<div class="card-container">
+    <md-card>
+        <md-card [heading]="expense.name" *ngFor="let expense of expenses"
+                        (click)="selected.emit(expense)">
+        <md-card-title>Покупка: {{expense.name}}</md-card-title>
+        <md-card-content>
+            <ul class="list-inline">
+              <li *ngFor="let tag of expense.tags">
+                <span class="label label-warning">
+                  #{{tag.name}}
+                </span>
+              </li>
+            </ul>
+            <div>
+              {{expense.user}}
+            </div>
+            <div>
+              {{expense.cost}}
+            </div>
+            <div>
+              {{expense.description}}
+            </div>
+            <div>
+              {{expense.date}}
+            </div>
+            <div>
+              <button class="btn btn-danger" type="submit" (click)="deleted.emit(expense); $event.stopPropagation();"
+              >
+                <i>Удалить</i>
+              </button>
+            </div>
+        </md-card-content>
+        </md-card>
+    </md-card>
+</div>
+
+<!--div *ngFor="let expense of expenses" (click)="selected.emit(expense)"
   class="recipe-card">
   <div>
     <h2>{{expense.name}}</h2>
@@ -27,4 +63,4 @@
       <i>close</i>
     </button>
   </div>
-</div>
+</div-->
