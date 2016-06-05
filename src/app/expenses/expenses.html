@@ -1,0 +1,10 @@
+<div>
+  <expenses-detail
+    (saved)="saveExpense($event)" (cancelled)="resetExpense($event)"
+    [expense]="selectedExpense | async">Pick your Fancy:</expenses-detail>
+</div>
+<div>
+  <expenses-list [expenses]="expenses | async"
+    (selected)="selectExpense($event)" (deleted)="deleteExpense($event)">
+</expenses-list>
+</div>

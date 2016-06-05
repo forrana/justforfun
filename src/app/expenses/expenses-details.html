@@ -1,0 +1,56 @@
+<div class="recipe-card">
+  <div>
+    <h2 *ngIf="selectedExpense._id">Editing {{originalTitle}}</h2>
+    <h2 *ngIf="!selectedExpense._id">Create New Expense</h2>
+  </div>
+  <div>
+    <form novalidate>
+        <div>
+          <label>Expense Name</label>
+          <input [(ngModel)]="selectedExpense.name"
+            placeholder="Enter a name" type="text">
+        </div>
+        <div>
+          <label>Expense Cost</label>
+          <input [(ngModel)]="selectedExpense.cost"
+            placeholder="Enter a cost" type="number">
+        </div>
+        <div>
+          <label>Expense Date</label>
+          <input [(ngModel)]="selectedExpense.date"
+            placeholder="Enter a date" type="date">
+        </div>
+        <div>
+          <label>Tags</label>
+          <button (click)="newTag()">
+              Add new tag
+          </button>
+          <div *ngFor="let tag of selectedExpense.tags">
+            <input [(ngModel)]="tag.name" placeholder="Enter a tag"
+            type="text">
+            <button (click)="deleteTag(tag)">
+              X
+            </button>
+          </div>
+        </div>
+        <div>
+          <label>Description</label>
+          <input [(ngModel)]="selectedExpense.description"
+            placeholder="Enter a description" type="text">
+        </div>
+        <div>
+          <label>User</label>
+          <input [(ngModel)]="selectedExpense.user"
+            placeholder="Enter a username" type="text">
+        </div>
+    </form>
+  </div>
+  <div>
+      <button type="submit" (click)="cancelled.emit(selectedExpense)">
+        Cancel
+      </button>
+      <button type="submit" (click)="saved.emit(selectedExpense)">
+        Save
+      </button>
+  </div>
+</div>
