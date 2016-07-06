@@ -1,0 +1,10 @@
+<div>
+  <user-detail
+    (saved)="saveUser($event)" (cancelled)="resetUser($event)"
+    [User]="selectedUser | async">Pick your Fancy:</user-detail>
+</div>
+<div>
+  <users-list [users]="users | async"
+    (selected)="selectUser($event)" (deleted)="deleteUser($event)">
+</users-list>
+</div>

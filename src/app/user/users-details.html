@@ -1,25 +1,24 @@
 <div class="card-container">
   <md-card x-large class="sample-content">
-      <h2 *ngIf="selectedExpense._id">Поправить {{originalTitle}}</h2>
-      <h2 *ngIf="!selectedExpense._id">Похвастаться новой покупкой</h2>
+      <h2 *ngIf="selectedUser._id">Поправить {{originalTitle}}</h2>
+      <h2 *ngIf="!selectedUser._id">Похвастаться новой покупкой</h2>
   </md-card>
   <md-card>
     <md-card-title>Сказ о покупке</md-card-title>
     <md-card-content>
     <form novalidate>
-        Как то, <md-input [(ngModel)]="selectedExpense.date"
-                type="date"></md-input>. Я, {{userName}}
-                <md-input [(ngModel)]="selectedExpense.user"
-                            [value]="userName"
+        Как то, <md-input [(ngModel)]="selectedUser.date"
+                type="date"></md-input>. Я,
+                <md-input [(ngModel)]="selectedUser.user"
                 placeholder="Мое погоняло" type="text"></md-input>, решил купить
-                <md-input [(ngModel)]="selectedExpense.name"
+                <md-input [(ngModel)]="selectedUser.name"
                 placeholder="что описываю?" type="text"></md-input>. И обошлось мне это в
-                <md-input [(ngModel)]="selectedExpense.cost"
+                <md-input [(ngModel)]="selectedUser.cost"
               placeholder="сколько стоило?" type="number"></md-input> рублей.
-          Про эту покупку могу еще добавить <md-input [(ngModel)]="selectedExpense.description"
+          Про эту покупку могу еще добавить <md-input [(ngModel)]="selectedUser.description"
             placeholder="пару слов" type="text"></md-input>.
           А что бы можно было потом сравнить с другими покупками, помечу ка Я ее еще вот так:
-            <div *ngFor="let tag of selectedExpense.tags">
+            <div *ngFor="let tag of selectedUser.tags">
               <input [(ngModel)]="tag.name" placeholder="К чему бы ее отнести?"
               type="text">
               <button type="button" class="btn btn-danger" (click)="deleteTag(tag)">
@@ -30,10 +29,10 @@
                 Добавить метку
             </button>
     </form>
-      <button class="btn btn-warning" type="submit" (click)="cancelled.emit(selectedExpense)">
+      <button class="btn btn-warning" type="submit" (click)="cancelled.emit(selectedUser)">
         Отменить
       </button>
-      <button class="btn btn-success" type="submit" (click)="saved.emit(selectedExpense)">
+      <button class="btn btn-success" type="submit" (click)="saved.emit(selectedUser)">
         Сохранить
       </button>
   </md-card-content>

@@ -16,6 +16,11 @@ export default (io) => {
 
     console.log('a user connected');
 
+    socket.on('hello', () => {
+        console.log('hello');
+        socket.emit('message','hello');
+    });
+
     socket.on('disconnect', () => {
 
       console.log('a user disconnected');

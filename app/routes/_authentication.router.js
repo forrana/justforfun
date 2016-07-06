@@ -67,7 +67,6 @@ export default (app, router, passport, auth, admin) => {
       // Use login function exposed by Passport to establish a login
       // session
       req.login(user, (err) => {
-
         if (err)
           return next(err);
 

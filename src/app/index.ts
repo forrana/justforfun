@@ -22,10 +22,14 @@ import {recipes} from './recipes/recipes.reducer';
 import {selectedRecipe} from './recipes/selected-recipe.reducer';
 
 // Import all of the files necessary for our `expense` component
+import {UsersService} from './user/users.service';
+import {users} from './user/users.reducer';
+import {selectedUser} from './user/selected-user.reducer';
+
 import {ExpensesService} from './expenses/expenses.service';
 import {expenses} from './expenses/expenses.reducer';
 import {selectedExpense} from './expenses/selected-expense.reducer';
-
+// Import all of the files necessary for our `expense` component
 //# Application Redux Stores
 //
 //** Redux stores for use with our Angular 2 app **
@@ -33,10 +37,11 @@ export const APP_STORES = [
   // These are the primary consumers of our app store
  // RecipeService,
   ExpensesService,
+  UsersService,
   // Inititialize app store available to entire app
   // and pass in our reducers.
   // Notice that we are passing in an object that matches the
   // `AppStore` interface
-  provideStore({ expenses, selectedExpense })
+  provideStore({ expenses, selectedExpense, users, selectedUser }),
  // provideStore({ recipes, selectedRecipe })
 ];
