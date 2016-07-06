@@ -6,6 +6,7 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 //** our providers/directives/pipes **
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
+import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 
 //## App Component
 //
@@ -18,13 +19,13 @@ import {App, APP_PROVIDERS, APP_STORES} from './app';
 export function main(initialHmrState?: any): Promise<any> {
 
   return bootstrap(App, [
-
     ...PROVIDERS,
     ...ENV_PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
     ...APP_PROVIDERS,
-    ...APP_STORES
+    ...APP_STORES,
+    ...AUTH_PROVIDERS
   ])
   .catch(err => console.error(err));
 }

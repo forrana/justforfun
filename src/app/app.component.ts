@@ -34,6 +34,9 @@ import {Recipes} from './recipes/recipes.component';
 // Import Expenses component
 import {Expenses} from './expenses/expenses.component';
 
+import {Signup} from './user/user-signup.component';
+import {Login} from './user/user-login.component';
+
 /*
  * App Component
  * Top Level Component
@@ -65,6 +68,12 @@ import {Expenses} from './expenses/expenses.component';
           <button md-button router-active [routerLink]=" ['Recipes'] ">
             Recipes
           </button-->
+          <button md-button router-active [routerLink]=" ['Signup'] ">
+            Signup
+          </button>
+          <button md-button router-active [routerLink]=" ['Login'] ">
+            Login
+          </button>
           <button md-button router-active [routerLink]=" ['Expenses'] ">
             Expenses
           </button>
@@ -92,8 +101,10 @@ import {Expenses} from './expenses/expenses.component';
   // { path: '/home',  name: 'Home',  component: Home },
   // { path: '/todo', component: Todo, name: 'Todo' },
   // { path: '/redux', component: Recipes, name: 'Recipes' },
-  { path: '/', component: Expenses, name: 'Expenses', useAsDefault: true},
-  { path: '/expenses', component: Expenses, name: 'Expenses'},
+  { path: '/', component: Login, name: 'Login', useAsDefault: true },
+  { path: '/login', component: Login, name: 'Login'},
+  { path: '/sugnup', component: Signup, name: 'Signup' },
+  { path: '/expenses', component: Expenses, name: 'Expenses' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
@@ -102,14 +113,14 @@ export class App {
   angularLogo = 'assets/img/angular-logo.png';
   name = 'Expenses calculation page';
   url = 'https://github.com/forrana';
-
+  socket;
   // Pass in our application `state`
   // Alternative to using `redux`
-  constructor(public appState: AppState) {}
+  constructor(public appState: AppState) {
+  }
 
   // Fire off upon initialization
   ngOnInit() {
-
     console.log('Initial App State', this.appState.state);
   }
 }

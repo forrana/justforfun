@@ -1,6 +1,6 @@
 import {expenses} from './expenses.reducer';
 
-import {selectedExpense} from './selected-expenses.reducer';
+import {selectedExpense} from './selected-expense.reducer';
 
 import {
   it,
@@ -11,7 +11,7 @@ import {
 describe('Expenses', () => {
   describe('`selectedExpense` store', () => {
     it('returns null by default', () => {
-      let defaultState = selectedRecipe(undefined, {type: 'random', payload: {}});
+      let defaultState = selectedExpense(undefined, {type: 'random', payload: {}});
 
       expect(defaultState).toBeNull();
     });

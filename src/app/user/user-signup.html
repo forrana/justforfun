@@ -1,0 +1,27 @@
+<div class="card-container">
+    <md-card>
+        <md-card-title>Signup</md-card-title>
+        <md-card-content>
+            <form novalidate>
+                <div>
+                    <md-input [(ngModel)]="username"
+                    placeholder="Enter login" type="text"></md-input>
+                </div>
+                <div>
+                    <md-input [(ngModel)]="password"
+                    placeholder="Enter password" type="password"></md-input>
+                </div>
+                <div>
+                    <md-input [(ngModel)]="email"
+                    placeholder="Enter email" type="email"></md-input>
+                </div>
+            </form>
+        </md-card-content>
+		<md-card-content>
+		{{statusMessage}}
+		</md-card-content>
+        <button class="btn btn-success" type="submit" (click)="signup(username, password, email)">
+          Signup
+        </button>
+    </md-card>
+</div>

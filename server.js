@@ -1,3 +1,4 @@
+#!/usr/bin/env nodejs
 // ```
 // server.js
 // (c) 2016 David Newman

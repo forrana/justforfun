@@ -1,5 +1,7 @@
 // Import our `Recipe` store
 import {Recipe} from './recipes/recipe.store';
+
+import {User} from './user/users.store';
 // Import our `Expenses` store
 import {Expense} from './expenses/expenses.store';
 
@@ -8,8 +10,6 @@ import {Expense} from './expenses/expenses.store';
 //   * A `selectedRecipe` property holding a single `Recipe`
 export interface AppStore {
 
-    recipes: Recipe[];
-    selectedRecipe: Recipe;
     expenses: Expense[];
     selectedExpense: Expense;
     // If ever you were to desire more functionality, you

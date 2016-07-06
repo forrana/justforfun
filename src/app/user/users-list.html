@@ -1,31 +1,30 @@
 <div class="card-container">
-    status: {{statusMessage}}
     <md-card>
-        <md-card [heading]="expense.name" *ngFor="let expense of expenses"
-                        (click)="selected.emit(expense)">
-        <md-card-title>Покупка: {{expense.name}}</md-card-title>
+        <md-card [heading]="User.name" *ngFor="let user of Users"
+                        (click)="selected.emit(user)">
+        <md-card-title>Покупка: {{user.name}}</md-card-title>
         <md-card-content>
             <ul class="list-inline">
-              <li *ngFor="let tag of expense.tags">
+              <li *ngFor="let tag of user.tags">
                 <span class="label label-warning">
                   #{{tag.name}}
                 </span>
               </li>
             </ul>
             <div>
-              {{expense.user}}
+              {{User.user}}
             </div>
             <div>
-              {{expense.cost}}
+              {{User.cost}}
             </div>
             <div>
-              {{expense.description}}
+              {{User.description}}
             </div>
             <div>
-              {{expense.date}}
+              {{User.date}}
             </div>
             <div>
-              <button class="btn btn-danger" type="submit" (click)="deleted.emit(expense); $event.stopPropagation();"
+              <button class="btn btn-danger" type="submit" (click)="deleted.emit(User); $event.stopPropagation();"
               >
                 <i>Удалить</i>
               </button>
@@ -35,32 +34,32 @@
     </md-card>
 </div>
 
-<!--div *ngFor="let expense of expenses" (click)="selected.emit(expense)"
+<!--div *ngFor="let User of Users" (click)="selected.emit(User)"
   class="recipe-card">
   <div>
-    <h2>{{expense.name}}</h2>
+    <h2>{{User.name}}</h2>
   </div>
   <ul class="list-inline">
-    <li *ngFor="let tag of expense.tags">
+    <li *ngFor="let tag of User.tags">
       <span class="label label-warning">
         #{{tag.name}}
       </span>
     </li>
   </ul>
   <div>
-    {{expense.user}}
+    {{User.user}}
   </div>
   <div>
-    {{expense.cost}}
+    {{User.cost}}
   </div>
   <div>
-    {{expense.description}}
+    {{User.description}}
   </div>
   <div>
-    {{expense.date}}
+    {{User.date}}
   </div>
   <div>
-    <button (click)="deleted.emit(expense); $event.stopPropagation();">
+    <button (click)="deleted.emit(User); $event.stopPropagation();">
       <i>close</i>
     </button>
   </div>

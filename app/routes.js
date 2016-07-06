@@ -74,7 +74,6 @@ export default (app, router, passport) => {
 
   expenseRoutes(app, router);
 
-
 	// All of our routes will be prefixed with /api
 	app.use('/api', router);
 
