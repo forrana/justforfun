@@ -63,8 +63,8 @@ export class Expenses {
       this.usersService
           .getCurrentUser()
           .subscribe(
-            success => this.statusMessage = success.text(),
-            error =>  this.statusMessage = <any>error.text()
+            success => console.log(success.text()),
+            error =>  console.log(<any>error.text())
           );
   }
 
