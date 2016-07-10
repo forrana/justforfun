@@ -8,10 +8,9 @@
     <md-card-content>
     <form novalidate>
         Как то, <md-input [(ngModel)]="selectedExpense.date"
-                type="date"></md-input>. Я, {{userName}}
-                <md-input [(ngModel)]="selectedExpense.user"
-                            [value]="userName"
-                placeholder="Мое погоняло" type="text"></md-input>, решил купить
+                type="date"></md-input>. Я,
+                <md-input [value]="userName"
+                placeholder="Мое погоняло" type="text" disabled></md-input>, решил купить
                 <md-input [(ngModel)]="selectedExpense.name"
                 placeholder="что описываю?" type="text"></md-input>. И обошлось мне это в
                 <md-input [(ngModel)]="selectedExpense.cost"

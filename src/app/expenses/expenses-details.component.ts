@@ -18,8 +18,10 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 
 import {ExpensesService} from './expenses.service';
+import {UsersService} from '../user/users.service';
 import {Expense} from './expenses.store';
 import {AppStore} from '../app.store';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'expenses-detail',
@@ -28,8 +30,9 @@ import {AppStore} from '../app.store';
 export class ExpensesDetails {
 
   originalTitle: string;
+  currentDate: string;
   selectedExpense: Expense;
-
+  userName: string;
   // Assign our `recipe` to a locally scoped property
   // Perform additional logic on every update via ES6 setter
   // Create a copy of `_recipe` and assign it to `this.selectedRecipe`
@@ -49,8 +52,20 @@ export class ExpensesDetails {
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
-  constructor() {
+  constructor(private usersService: UsersService
+                ) {
+      var datePipe = new DatePipe();
+      this.getCureentUser();
+      this.currentDate = datePipe.transform(Date.now(), 'dd/MM/yyyy');
+  }
 
+  getCureentUser() {
+      this.usersService
+          .getCurrentUser()
+          .subscribe(
+            success => this.userName = success.json().username,
+            error =>  console.log(<any>error.text())
+          );
   }
 
   // Whenever the user needs to add a new `tag`, push an

@@ -72,10 +72,10 @@ export default (app, router, passport) => {
 
   recipeRoutes(app, router);
 
-  expenseRoutes(app, router);
+  expenseRoutes(app, router, auth);
 
 	// All of our routes will be prefixed with /api
-	app.use('/api', router);
+    app.use('/api', router);
 
   // ### Frontend Routes
 

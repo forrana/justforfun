@@ -32,7 +32,8 @@ import {ExpensesList} from './expenses-list.component';
 })
 
 export class Expenses {
-  userName: String;
+  userName: string;
+  userId: string;
   expenses: Observable<Array<Expense>>;
   statusMessage: String;
 
@@ -63,7 +64,10 @@ export class Expenses {
       this.usersService
           .getCurrentUser()
           .subscribe(
-            success => console.log(success.text()),
+            success => {
+                        this.userName = success.json().username;
+                        this.userId = success.json()._id;
+                    },
             error =>  console.log(<any>error.text())
           );
   }
@@ -82,15 +86,14 @@ export class Expenses {
   }
 
   resetExpense() {
-
     let emptyExpense: Expense = {
         _id: null,
         tags: [],
-        name: '',
+        name: null,
         description: '',
         cost: null,
         currency: null,
-        user: '',
+        user: this.userId,
         date: null
     };
 
@@ -101,6 +104,7 @@ export class Expenses {
   }
 
   saveExpense(expense: Expense) {
+    expense.user = this.userId;
     this.expensesService.saveExpense(expense);
     this.resetExpense();
   }

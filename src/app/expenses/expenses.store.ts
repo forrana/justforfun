@@ -15,5 +15,5 @@ export interface Expense {
   cost: number;
   currency: string;
   user: string;
-  date: string;
+  date: Date;
 };

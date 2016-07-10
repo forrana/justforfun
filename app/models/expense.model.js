@@ -13,14 +13,18 @@
 
 // Grab the Mongoose module
 import mongoose from 'mongoose';
+import User from './user.model.js';
+
 
 // Create a `schema` for the `Expense` object
 let expenseSchema = new mongoose.Schema({
   name: { type : String },
   tags: { type: Array },
-  cost: { type: Number},
-  currency: { type: String},
-  user: { type: String},
+  cost: { type: Number },
+  currency: { type: String },
+  userId: { type: mongoose.Schema.ObjectId,
+            ref: 'User' },
+  userName: { type: String },
   description: { type : String },
   date: { type : Date },
 });

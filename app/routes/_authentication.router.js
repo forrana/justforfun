@@ -114,7 +114,6 @@ export default (app, router, passport, auth, admin) => {
   router.post('/auth/logout', (req, res) => {
 
     req.logOut();
-
     // Even though the logout was successful, send the status code
     // `401` to be intercepted and reroute the user to the appropriate
     // page

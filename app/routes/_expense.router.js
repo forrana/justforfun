@@ -20,7 +20,7 @@
 // Load the `expense` model
 import Expense from '../models/expense.model';
 
-export default (app, router) => {
+export default (app, router, auth) => {
 
   // ## Expense API Routes
 
@@ -33,49 +33,54 @@ export default (app, router) => {
     // Accessed at POST http://localhost:8080/api/expense
 
     // Create a `expense`
-    .post((req, res) => {
+    .post(auth, (req, res) => {
+        if (!req.isAuthenticated()){
+            res.send(401);
+        } else {
+          Expense.create( {
 
-      Expense.create({
+            name : req.body.name,
 
-        name : req.body.name,
+            tags : req.body.tags,
 
-        tags : req.body.tags,
+            cost : req.body.cost,
 
-        cost : req.body.cost,
+            description : req.body.description,
 
-        description : req.body.description,
+            date: req.body.date,
 
-        date: req.body.date,
+            user: req.body.user,
 
-        user: req.body.user,
+          }, (err, expense) => {
 
-      }, (err, expense) => {
+            if (err)
+              res.send(err);
 
-        if (err)
-          res.send(err);
+            // DEBUG
+            console.log(`Expense created: ${expense}`);
 
-        // DEBUG
-        console.log(`Expense created: ${expense}`);
-
-        // return the new `expense` to our front-end
-        res.json(expense);
-      });
+            // return the new `expense` to our front-end
+            res.json(expense);
+          });
+      }
     })
 
     // ### Get all of the `expenses`
 
     // Accessed at GET http://localhost:8080/api/expense
-    .get((req, res) => {
-
-      // Use mongoose to get all expenses in the database
+    .get(auth, (req, res) => {
+      //auth(req, res);
+    if (!req.isAuthenticated()){
+        res.send(401);
+    } else {
       Expense.find((err, expense) => {
-
         if(err)
           res.send(err);
-
         else
           res.json(expense);
       });
+    }
+      // Use mongoose to get all expenses in the database
     });
 
   router.route('/expense/:expense_id')
@@ -84,16 +89,19 @@ export default (app, router) => {
 
     // Accessed at GET http://localhost:8080/api/expense/:expense_id
     .get((req, res) => {
+        if (!req.isAuthenticated()){
+            res.send(401);
+        } else {
+          // Use mongoose to fetch a single `expense` by id in the database
+          Expense.findOne(req.params.expense_id, (err, expense) => {
 
-      // Use mongoose to fetch a single `expense` by id in the database
-      Expense.findOne(req.params.expense_id, (err, expense) => {
+            if(err)
+              res.send(err);
 
-        if(err)
-          res.send(err);
-
-        else
-          res.json(expense);
-      });
+            else
+              res.json(expense);
+          });
+        }
     })
 
     // ### Update a `expense` by ID
