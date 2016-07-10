@@ -37,6 +37,8 @@ import {Expenses} from './expenses/expenses.component';
 import {Signup} from './user/user-signup.component';
 import {Login} from './user/user-login.component';
 
+import {UsersService} from './user/users.service';
+
 /*
  * App Component
  * Top Level Component
@@ -80,6 +82,9 @@ import {Login} from './user/user-login.component';
           <button md-button router-active [routerLink]=" ['About'] ">
             About
           </button>
+          <button md-button (click)="usersService.logout()">
+            Logout
+          </button>
       </md-toolbar>
 
       <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading">
@@ -116,7 +121,7 @@ export class App {
   socket;
   // Pass in our application `state`
   // Alternative to using `redux`
-  constructor(public appState: AppState) {
+  constructor(public appState: AppState, public usersService: UsersService) {
   }
 
   // Fire off upon initialization

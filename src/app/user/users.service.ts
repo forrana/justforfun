@@ -53,7 +53,6 @@ export class UsersService {
   signup(username, password, email) {
         let body = JSON.stringify({'username': username, 'password': password, 'email': email});
         let headers = new Headers();
-        console.log(username, password);
         var creds = `username=${username}&password=${password}&email=${email}`;
 
         return this.http.post('/api/auth/signup', creds, HEADER)
@@ -67,6 +66,16 @@ export class UsersService {
 
           return this.http.post('/api/auth/login', creds, HEADER)
               .map((res: Response) => res)
+    }
+
+    logout(username, password) {
+        console.log('logout');
+        this.http.post('/api/auth/logout', '', HEADER)
+            .map((res: Response) => res)
+            .subscribe(
+              success => console.log(success.text()),
+              error =>  console.log(<any>error.text())
+            );
     }
 
     isLoggedIn() {
