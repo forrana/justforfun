@@ -22,9 +22,8 @@ let expenseSchema = new mongoose.Schema({
   tags: { type: Array },
   cost: { type: Number },
   currency: { type: String },
-  userId: { type: mongoose.Schema.ObjectId,
+  user: { type: mongoose.Schema.ObjectId,
             ref: 'User' },
-  userName: { type: String },
   description: { type : String },
   date: { type : Date },
 });

@@ -69,7 +69,6 @@ export class UsersService {
     }
 
     logout(username, password) {
-        console.log('logout');
         this.http.post('/api/auth/logout', '', HEADER)
             .map((res: Response) => res)
             .subscribe(

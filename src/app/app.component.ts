@@ -82,7 +82,9 @@ import {UsersService} from './user/users.service';
           <button md-button router-active [routerLink]=" ['About'] ">
             About
           </button>
-          <button md-button (click)="usersService.logout()">
+          <button md-button (click)="usersService.logout()"
+                  [routerLink]=" ['Login'] "
+          >
             Logout
           </button>
       </md-toolbar>

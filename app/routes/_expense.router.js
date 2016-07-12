@@ -34,9 +34,6 @@ export default (app, router, auth) => {
 
     // Create a `expense`
     .post(auth, (req, res) => {
-        if (!req.isAuthenticated()){
-            res.send(401);
-        } else {
           Expense.create( {
 
             name : req.body.name,
@@ -62,24 +59,20 @@ export default (app, router, auth) => {
             // return the new `expense` to our front-end
             res.json(expense);
           });
-      }
     })
 
     // ### Get all of the `expenses`
 
     // Accessed at GET http://localhost:8080/api/expense
     .get(auth, (req, res) => {
+        console.log('user:', req.user);
       //auth(req, res);
-    if (!req.isAuthenticated()){
-        res.send(401);
-    } else {
-      Expense.find((err, expense) => {
+      Expense.find({ "user": req.user._id },(err, expense) => {
         if(err)
           res.send(err);
         else
           res.json(expense);
       });
-    }
       // Use mongoose to get all expenses in the database
     });
 
@@ -88,10 +81,7 @@ export default (app, router, auth) => {
     // ### Get a `expense` by ID
 
     // Accessed at GET http://localhost:8080/api/expense/:expense_id
-    .get((req, res) => {
-        if (!req.isAuthenticated()){
-            res.send(401);
-        } else {
+    .get(auth, (req, res) => {
           // Use mongoose to fetch a single `expense` by id in the database
           Expense.findOne(req.params.expense_id, (err, expense) => {
 
@@ -101,13 +91,12 @@ export default (app, router, auth) => {
             else
               res.json(expense);
           });
-        }
     })
 
     // ### Update a `expense` by ID
 
     // Accessed at PUT http://localhost:8080/api/expense/:expense_id
-    .put((req, res) => {
+    .put(auth, (req, res) => {
 
       // use our `expense` model to find the `expense` we want
       Expense.findOne({
@@ -153,7 +142,7 @@ export default (app, router, auth) => {
     // ### Delete a `expense` by ID
 
     // Accessed at DELETE http://localhost:8080/api/expense/:expense_id
-    .delete((req, res) => {
+    .delete(auth, (req, res) => {
 
       // DEBUG
       console.log(`Attempting to delete expense with id: ${req.params.expense_id}`);

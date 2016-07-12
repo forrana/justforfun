@@ -56,7 +56,6 @@ export default (app, router, passport, auth, admin) => {
 
       // If no user is returned...
       if (!user) {
-
         // Set HTTP status code `401 Unauthorized`
         res.status(401);
 
