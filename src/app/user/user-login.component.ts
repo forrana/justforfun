@@ -47,7 +47,7 @@ export class Login {
         .login(username, password)
         .subscribe(
           success => this.router.parent.navigate(['/Expenses']),
-          error =>  this.statusMessage = <any>error.text()
+          error =>  {this.statusMessage = <any>error.text(); console.log(error)}
         );
     }
 
