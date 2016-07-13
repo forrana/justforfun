@@ -61,7 +61,7 @@ export default (app, router, passport, auth, admin) => {
 
         // Return the info message
         // return next(info.loginMessage);
-        return;
+        return next();
       }
 
       // Use login function exposed by Passport to establish a login
@@ -98,10 +98,10 @@ export default (app, router, passport, auth, admin) => {
       if (!user) {
 
         // Set HTTP status code `401 Unauthorized`
-        res.status(401);
+        res.status(401).json(info.signupMessage);
 
         // Return the info message
-        return next(info.signupMessage);
+        return next();
       }
 
       // Set HTTP status code `204 No Content`
