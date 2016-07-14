@@ -33,18 +33,35 @@ export class ExpensesDetails {
   currentDate: string;
   selectedExpense: Expense;
   userName: string;
+  user: any;
   // Assign our `recipe` to a locally scoped property
   // Perform additional logic on every update via ES6 setter
   // Create a copy of `_recipe` and assign it to `this.selectedRecipe`
   // which we will use to bind our form to
+  setExpense = (value) => {
+      if (value) this.originalTitle = value.name;
+      this.selectedExpense = Object.assign({user: this.userName,
+                                            date: this.currentDate
+                                            }, value);
+      // DEBUG
+      console.log('this.selectedExpense: ');
+      console.log(this.selectedExpense);
+  }
+
   @Input('expense') set _expense(value: Expense) {
+      this.setExpense(value);
 
-    if (value) this.originalTitle = value.name;
-    this.selectedExpense = Object.assign({}, value);
-
-    // DEBUG
-    console.log('this.selectedExpense: ');
-    console.log(this.selectedExpense);
+      this.usersService
+          .getCurrentUser()
+          .subscribe(
+            success => {
+                this.user.userName = success.json().username;
+                this.setExpense(value);
+            },
+            error =>  {
+                console.log(<any>error.text());
+            }
+          );
   }
 
   // Allow the user to save/delete a `recipe or cancel the
@@ -52,11 +69,12 @@ export class ExpensesDetails {
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
-  constructor(private usersService: UsersService
-                ) {
-      var datePipe = new DatePipe();
-      this.getCureentUser();
-      this.currentDate = datePipe.transform(Date.now(), 'dd/MM/yyyy');
+  constructor(private usersService: UsersService) {
+      this.user = {};
+      this.currentDate = new Date().toISOString().slice(0, 10);
+  }
+  onInit(){
+      this.cancelled.emit(this.selectedExpense);
   }
 
   getCureentUser() {

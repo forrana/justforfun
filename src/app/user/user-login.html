@@ -1,4 +1,4 @@
-<div class="card-container">
+    <div class='flex-container'>
     <md-card>
         <md-card-title>Login</md-card-title>
         <md-card-content>
@@ -16,8 +16,19 @@
 		<md-card-content>
 		{{statusMessage}}
 		</md-card-content>
-        <button class="btn btn-success" type="submit" (click)="login(username, password)">
-          Login
-        </button>
+        <md-card-content>
+        <div class="row">
+            <div class='col-md-6'>
+                <button class="btn btn-success" type="submit" (click)="login(username, password)">
+                  Login
+                </button>
+            </div>
+            <div class='col-md-6'>
+                <button class="btn btn-default" type="submit" (click)="openSignup()">
+                  Signup
+                </button>
+            </div>
+        </div>
+        </md-card-content>
     </md-card>
-</div>
+    </div>

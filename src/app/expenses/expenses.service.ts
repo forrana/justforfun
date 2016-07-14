@@ -47,6 +47,12 @@ export class ExpensesService {
             // This combo of `map` method calls is an observable sequence
             // in that every result gets passed through this sequence of
             // operations
+            .map(res =>
+                 res.map(expense => {
+                        expense.date = new Date(expense.date).toISOString().slice(0, 10);
+                        return expense;
+                 })
+            )
             .map(payload => ({ type: 'ADD_EXPENSE', payload }))
             // Subscribe to this sequence and hand off control to the
             // reducer by dispatching the transformed results
@@ -62,6 +68,10 @@ export class ExpensesService {
 
         this.http.post('/api/expense', JSON.stringify(expense), HEADER)
             .map(res => res.json())
+            .map(res => {
+                 res.date = new Date(res.date).toISOString().slice(0, 10);
+                 return res;
+            })
             .map(payload => ({ type: 'CREATE_EXPENSE', payload }))
             .subscribe(action => this.store.dispatch(action));
     }

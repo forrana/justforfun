@@ -17,3 +17,17 @@ canvas {
 	text-align: center;
 	pointer-events: none;
 }
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    justify-content:center;
+    border: 2px dashed #FBC02D;
+    margin: 15px;
+}
+
+md-content{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

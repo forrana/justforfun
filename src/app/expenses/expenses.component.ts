@@ -94,7 +94,7 @@ export class Expenses {
         cost: null,
         currency: null,
         user: this.userId,
-        date: null
+        date: new Date().toISOString().slice(0, 10),
     };
 
     this.store.dispatch({

@@ -51,6 +51,10 @@ export class Login {
         );
     }
 
+    openSignup() {
+        this.router.parent.navigate(['/Signup']);
+    }
+
     isLoggedIn() {
         this.usersService
             .isLoggedIn()
