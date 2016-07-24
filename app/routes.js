@@ -23,6 +23,8 @@ import recipeRoutes from './routes/_recipe.router.js';
 // Load our API routes for the `recipe` component
 import expenseRoutes from './routes/_expense.router.js';
 
+import fireRoutes from './routes/_fire-eqip.router.js';
+
 export default (app, router, passport) => {
 
   // ### Express Middlware to use for all requests
@@ -73,6 +75,8 @@ export default (app, router, passport) => {
   recipeRoutes(app, router);
 
   expenseRoutes(app, router, auth);
+
+  fireRoutes(app, router, auth);
 
 	// All of our routes will be prefixed with /api
     app.use('/api', router);

@@ -34,6 +34,8 @@ import {Recipes} from './recipes/recipes.component';
 // Import Expenses component
 import {Expenses} from './expenses/expenses.component';
 
+import {FireEqips} from './fire-eqip/fire-eqip.component';
+
 import {Signup} from './user/user-signup.component';
 import {Login} from './user/user-login.component';
 
@@ -79,6 +81,9 @@ import {UsersService} from './user/users.service';
           <button md-button router-active [routerLink]=" ['Expenses'] ">
             Expenses
           </button>
+          <button md-button router-active [routerLink]=" ['FireEqips'] ">
+            FireEqips
+          </button>
           <button md-button router-active [routerLink]=" ['About'] ">
             About
           </button>
@@ -112,6 +117,7 @@ import {UsersService} from './user/users.service';
   { path: '/login', component: Login, name: 'Login'},
   { path: '/sugnup', component: Signup, name: 'Signup' },
   { path: '/expenses', component: Expenses, name: 'Expenses' },
+  { path: '/eqips', component: FireEqips, name: 'FireEqips' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
