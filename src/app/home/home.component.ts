@@ -9,6 +9,9 @@ import {Accordion} from '../shared/components/accordion/accordion.component';
 import {AccordionGroup} from
   '../shared/components/accordion/accordion-group.component';
 
+import {ProjectsPreview} from '../projects/project-preview.component';
+
+import {FeedbacksPreview} from '../feedbacks/feedback-preview.component';
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
@@ -27,7 +30,9 @@ import {NgFor} from '@angular/common';
       XLarge,
       Accordion,
       AccordionGroup,
-      NgFor
+      NgFor,
+      ProjectsPreview,
+      FeedbacksPreview
   ],
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [ ],
@@ -45,31 +50,8 @@ export class Home {
 
   }
 
-  isOpen: boolean = false;
-
-  groups: Array<any> = [
-      {
-          heading: 'Dynamic 1',
-          content: 'I am dynamic!'
-      },
-      {
-          heading: 'Dynamic 2',
-          content: 'Dynamic as well'
-      }
-  ];
-
-  removeDynamic() {
-      this.groups.pop();
-  }
-
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
-  }
-
-  submitState(value) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
   }
 }

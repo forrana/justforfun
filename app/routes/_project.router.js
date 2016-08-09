@@ -18,7 +18,7 @@
 // PUT        /api/expense/:expense_id  Update a expense with new info
 
 // Load the `expense` model
-import FireEqip from '../models/fire-eqip.model';
+import Project from '../models/project.model';
 
 export default (app, router, auth) => {
 
@@ -26,15 +26,15 @@ export default (app, router, auth) => {
 
   // Define routes for the `expense` API
 
-  router.route('/eqip')
+  router.route('/project')
 
     // ### Create a `expense`
 
-    // Accessed at POST http://localhost:8080/api/expense
+    // Accessed at POST http://localhost:8080/api/project
 
     // Create a `expense`
     .post(auth, (req, res) => {
-          FireEqip.create( {
+          Project.create( {
 
             name : req.body.name,
 
@@ -46,47 +46,47 @@ export default (app, router, auth) => {
 
             user: req.body.user,
 
-        }, (err, eqip) => {
+        }, (err, project) => {
 
             if (err)
               res.send(err);
 
             // DEBUG
-            console.log(`Fire eqip created: ${eqip}`);
+            console.log(`Project created: ${project}`);
 
             // return the new `expense` to our front-end
-            res.json(eqip);
+            res.json(project);
           });
     })
 
     // ### Get all of the `expenses`
 
-    // Accessed at GET http://localhost:8080/api/expense
+    // Accessed at GET http://localhost:8080/api/project
     .get((req, res) => {
         console.log('user:', req.user);
       //auth(req, res);
-      FireEqip.find((err, eqips) => {
+      Project.find((err, projects) => {
         if(err)
           res.send(err);
         else
-          res.json(eqips);
+          res.json(projects);
       });
       // Use mongoose to get all expenses in the database
     });
 
-  router.route('/eqip/:eqip_id')
+  router.route('/project/:project_id')
 
     // ### Get a `expense` by ID
 
-    // Accessed at GET http://localhost:8080/api/expense/:expense_id
+    // Accessed at GET http://localhost:8080/api/project/:project
     .get(auth, (req, res) => {
           // Use mongoose to fetch a single `expense` by id in the database
-          FireEqip.findOne(req.params.eqip_id, (err, eqip) => {
+          Project.findOne(req.params.project_id, (err, project) => {
 
             if(err)
               res.send(err);
             else
-              res.json(eqip);
+              res.json(project);
           });
     })
 
@@ -96,38 +96,38 @@ export default (app, router, auth) => {
     .put(auth, (req, res) => {
 
       // use our `expense` model to find the `expense` we want
-      FireEqip.findOne({
+      Project.findOne({
 
-        '_id' : req.params.eqip._id
+        '_id' : req.params.project._id
 
-    }, (err, eqip) => {
+    }, (err, project) => {
 
         if (err)
           res.send(err);
 
         // Only update a field if a new value has been passed in
         if (req.body.name)
-          eqip.name = req.body.name;
+          project.name = req.body.name;
 
         if (req.body.picture)
-          eqip.picture = req.body.picture;
+          project.picture = req.body.picture;
 
         if (req.body.tags)
-          eqip.tags = req.body.tags;
+          project.tags = req.body.tags;
 
         if (req.body.user)
-          eqip.user = req.body.user;
+          project.user = req.body.user;
 
         if (req.body.description)
-          eqip.description = req.body.description;
+          project.description = req.body.description;
 
         // save the `expense`
-        return eqip.save((err) => {
+        return project.save((err) => {
 
           if (err)
             res.send(err);
 
-          return res.send(eqip);
+          return res.send(project);
 
         });
       });
@@ -139,12 +139,12 @@ export default (app, router, auth) => {
     .delete(auth, (req, res) => {
 
       // DEBUG
-      console.log(`Attempting to delete expense with id: ${req.params.eqip_id}`);
+      console.log(`Attempting to delete expense with id: ${req.params.project_id}`);
 
-      FireEqip.remove({
+      Project.remove({
 
-        _id : req.params.eqip_id
-    }, (err, eqip) => {
+        _id : req.params.project_id
+    }, (err, project) => {
 
         if(err)
           res.send(err);
@@ -152,11 +152,11 @@ export default (app, router, auth) => {
         else
           console.log('Expense successfully deleted!');
 
-        FireEqip.find((err, eqips) => {
+        Project.find((err, projects) => {
           if(err)
             res.send(err);
 
-          res.json(eqips);
+          res.json(projects);
         });
       });
     });

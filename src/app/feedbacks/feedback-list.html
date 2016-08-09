@@ -1,0 +1,22 @@
+<md-content class="card-container" *ngFor="let feedback of feedbacks;let i=index">
+    <md-card *ngIf="!limit || i<limit" [heading]="feedback.name"
+                (click)="selected.emit(feedback)">
+        <md-card>
+            <md-card-title>Отзыв: {{feedback.name}}</md-card-title>
+            <md-card-content>
+                <div>
+                  {{feedback.pictures}}
+                </div>
+                <div>
+                  {{feedback.description}}
+                </div>
+                <div *ngIf="!readOnly">
+                  <button class="btn btn-danger" type="submit" (click)="deleted.emit(feedback); $event.stopPropagation();"
+                  >
+                    <i>Удалить</i>
+                  </button>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-card>
+</md-content>
