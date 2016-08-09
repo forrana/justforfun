@@ -1,0 +1,4 @@
+<project-list [projects]="projects | async"
+    [readOnly]="true"
+    (selected)="selectedProject($event)" (deleted)="deleteProject($event)">
+</project-list>

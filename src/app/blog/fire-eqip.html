@@ -1,0 +1,11 @@
+<div>
+  <fire-eqip-detail
+    (saved)="saveFireEqip($event)" (cancelled)="resetFireEqip($event)"
+    [eqip]="selectedFireEqip | async">Pick your Fancy:
+  </fire-eqip-detail>
+</div>
+<div>
+  <fire-eqip-list [eqips]="eqips | async"
+    (selected)="selectedFireEqip($event)" (deleted)="deleteFireEqip($event)">
+</fire-eqip-list>
+</div>

@@ -1,50 +1,79 @@
 <div class="card-container">
-  <md-card x-large class="sample-content">Your Content Here</md-card>
-  <md-card>
-    <md-card-title>Local State</md-card-title>
-    <md-card-content>
-
-      <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-
-        <md-input
-          placeholder="Submit Local State to App State"
-          [value]="localState.value"
-          (input)="localState.value = $event.target.value"
-          autofocus>
-        </md-input>
-
-        <button md-raised-button color="primary">Submit Value</button>
-      </form>
-      <!--
-        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
-        Rather than wiring up two-way data-binding ourselves with [value] and (input)
-        we can use Angular's [(ngModel)] syntax
-        <input type="text" [(ngModel)]="localState.value" autofocus>
-      -->
-
-      <pre>this.localState = {{ localState | json }}</pre>
-
-    </md-card-content>
+  <md-card x-large class="sample-content">
+      <md-card-title>Добро пожаловать</md-card-title>
+      <md-card-content>
+          Сайт огненного театра Irden
+      </md-card-content>
   </md-card>
-
-  <md-card>
-    <p>
-      <button type="button" class="btn btn-default" (click)="removeDynamic()">
-        Remove last dynamic
-      </button>
-    </p>
-
-    <accordion close-others="true">
-      <accordion-group heading="This is the header" is-open="true">
-        This is the content
-      </accordion-group>
-      <accordion-group [heading]="group.heading" *ngFor="let group of groups">
-        {{group.content}}
-      </accordion-group>
-      <accordion-group heading="Another group" [is-open]="isOpen">
-        More content
-      </accordion-group>
-    </accordion>
-  </md-card>
-
+<md-card>
+        <md-card-title><a href="#/projects">Наши программы</a></md-card-title>
+        <md-card-content>
+          <projects-preview>
+          </projects-preview>
+        </md-card-content>
+</md-card>
+<!--md-card>
+  <md-card-title>Галлерея</md-card-title>
+  <md-card-content>
+      <md-card>
+          <md-card-title>Категория 1</md-card-title>
+          <md-card-content>
+           Фото категории 1
+          </md-card-content>
+      </md-card>
+      <md-card>
+          <md-card-title>Категория 2</md-card-title>
+          <md-card-content>
+           Фото категории 2
+          </md-card-content>
+      </md-card>
+      <md-card>
+          <md-card-title>Категория 3</md-card-title>
+          <md-card-content>
+           Фото категории 3
+          </md-card-content>
+      </md-card>
+  </md-card-content>
+</md-card-->
+<!--md-card>
+  <md-card-title>Блог</md-card-title>
+  <md-card-content>
+      <md-card>
+          <md-card-title>Тема 1</md-card-title>
+          <md-card-content>
+           Начало темы 1
+          </md-card-content>
+      </md-card>
+      <md-card>
+          <md-card-title>Тема 2</md-card-title>
+          <md-card-content>
+           Начало темы 2
+          </md-card-content>
+      </md-card>
+      <md-card>
+          <md-card-title>Тема 3</md-card-title>
+          <md-card-content>
+           Начало темы 3
+          </md-card-content>
+      </md-card>
+  </md-card-content>
+</md-card-->
+<md-card>
+  <md-card-title><a href="#/feedbacks">Отзывы</a></md-card-title>
+  <md-card-content>
+      <feedbacks-preview>
+      </feedbacks-preview>
+  </md-card-content>
+</md-card>
+<!--md-card>
+  <md-card-title>Контакты/обратная связь</md-card-title>
+  <md-card-content>
+      <md-card>
+          <md-card-title>О нас</md-card-title>
+          <md-card-content>
+           Короткое описание
+          </md-card-content>
+      </md-card>
+  </md-card-content>
+</md-card-->
 </div>

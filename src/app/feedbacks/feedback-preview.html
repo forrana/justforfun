@@ -1,0 +1,5 @@
+<feedback-list [feedbacks]="feedbacks | async"
+    [limit]="3"
+    [readOnly]="true"
+    (selected)="selectedFeedback($event)" (deleted)="deleteFeedback($event)">
+</feedback-list>
