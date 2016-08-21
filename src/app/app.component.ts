@@ -40,6 +40,8 @@ import {Projects} from './projects/project.component';
 
 import {Feedbacks} from './feedbacks/feedback.component';
 
+import {Gallery} from './gallery/gallery.component';
+
 import {Signup} from './user/user-signup.component';
 import {Login} from './user/user-login.component';
 
@@ -75,6 +77,9 @@ import {UsersService} from './user/users.service';
           </button-->
           <button md-button router-active [routerLink]=" ['Projects'] ">
             Программы
+          </button>
+          <button md-button router-active [routerLink]=" ['Gallery'] ">
+            Галлерея
           </button>
           <button md-button router-active [routerLink]=" ['Feedbacks'] ">
             Отзывы
@@ -113,6 +118,7 @@ import {UsersService} from './user/users.service';
   { path: '/sugnup', component: Signup, name: 'Signup' },
   { path: '/eqips', component: FireEqips, name: 'FireEqips' },
   { path: '/projects', component: Projects, name: 'Projects' },
+  { path: '/gallery', component: Gallery, name: 'Gallery' },
   { path: '/feedbacks', component: Feedbacks, name: 'Feedbacks' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`

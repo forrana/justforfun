@@ -1,0 +1,6 @@
+<md-content class="card-container gallery-container">
+    <md-card *ngFor="let photo of galleries"
+        class="gallery-image"
+        [ngStyle]="{'background-image': 'url(/assets/uploads/'+photo+ ')'}">
+    </md-card>
+</md-content>

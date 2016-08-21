@@ -8,6 +8,7 @@
 // # Expense Component
 
 import {Component,
+  OnInit,
   Input,
   Output,
   EventEmitter,
@@ -27,7 +28,7 @@ import {DatePipe} from "@angular/common";
   selector: 'project-detail',
   template: require('./project-details.html'),
 })
-export class ProjectDetails {
+export class ProjectDetails implements OnInit{
   originalTitle: string;
   currentDate: string;
   selectedProject: Project;
@@ -54,7 +55,6 @@ export class ProjectDetails {
           .subscribe(
             success => {
                 this.user.userName = success.json().username;
-                this.setProject(value);
             },
             error =>  {
                 console.log(<any>error.text());
@@ -75,13 +75,16 @@ export class ProjectDetails {
       this.cancelled.emit(this.selectedProject);
   }
 
+  ngOnInit(){
+     this.getCureentUser().subscribe(
+         success => this.userName = success.json().username,
+         error =>  console.log(<any>error.text())
+     );
+  }
+
   getCureentUser() {
-      this.usersService
-          .getCurrentUser()
-          .subscribe(
-            success => this.userName = success.json().username,
-            error =>  console.log(<any>error.text())
-          );
+      return this.usersService
+          .getCurrentUser();
   }
   // Whenever the user needs to add a new `tag`, push an
   // empty `tag` object to the `tags` array on the

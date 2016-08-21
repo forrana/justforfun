@@ -16,21 +16,18 @@ import {Component,
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 
-import {FireEqipService} from './fire-eqip.service';
-import {FireEqip} from './fire-eqip.store';
+import {GalleryService} from './gallery.service';
 import {AppStore} from '../app.store';
 
 @Component({
-  selector: 'fire-eqip-list',
-  template: require('./fire-eqip-list.html'),
+  selector: 'gallery-list',
+  template: require('./gallery-list.html'),
 })
-export class FireEqipList {
+export class GalleryList {
   // The `expense` component hands off `expenses` and `selectedexpense`
   // via property bindings to its child components
   // Here we pick up the `expenses` collection by annotating our local
   // `expenses` property with `@Input()`
-  @Input() eqips: FireEqip[];
+  @Input() galleries: Array<any>;
   // Two event outputs for when a expense is selected or deleted
-  @Output() selected = new EventEmitter();
-  @Output() deleted = new EventEmitter();
 }

@@ -26,6 +26,8 @@ import feedbackRoutes from './routes/_feedbacks.router.js';
 
 import projectRoutes from './routes/_project.router.js';
 
+import fileRoutes from './routes/_file-upload.router.js';
+
 export default (app, router, passport) => {
 
   // ### Express Middlware to use for all requests
@@ -77,6 +79,8 @@ export default (app, router, passport) => {
   feedbackRoutes(app, router, auth);
 
   projectRoutes(app, router, auth);
+
+  fileRoutes(app, router, auth);
 
   // All of our routes will be prefixed with /api
   app.use('/api', router);
