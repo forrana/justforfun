@@ -24,6 +24,8 @@ import {Project} from './project.store';
 import {AppStore} from '../app.store';
 import {DatePipe} from "@angular/common";
 
+import {AppState} from '../app.service';
+
 @Component({
   selector: 'project-detail',
   template: require('./project-details.html'),
@@ -67,7 +69,9 @@ export class ProjectDetails implements OnInit{
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService,
+              private appState: AppState
+                ) {
       this.user = {};
       this.currentDate = new Date().toISOString().slice(0, 10);
   }
@@ -75,11 +79,16 @@ export class ProjectDetails implements OnInit{
       this.cancelled.emit(this.selectedProject);
   }
 
-  ngOnInit(){
+  ngOnInit() {
      this.getCureentUser().subscribe(
          success => this.userName = success.json().username,
          error =>  console.log(<any>error.text())
      );
+  }
+
+  isLoggedIn() {
+      console.log(this.appState.get('isLoggedIn'));
+      return this.appState.get('isLoggedIn');
   }
 
   getCureentUser() {

@@ -1,5 +1,4 @@
-user:{{userName}}
-<md-content class="card-container" *ngIf="!user.userName">
+<md-content class="card-container" *ngIf="isLoggedIn() === true">
   <md-card x-large class="sample-content">
       <h2 *ngIf="selectedProject._id">Поправить {{originalTitle}}</h2>
       <h2 *ngIf="!selectedProject._id">Добавить новую программу</h2>

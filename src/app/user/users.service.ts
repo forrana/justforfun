@@ -14,6 +14,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 import {User} from './users.store';
+import {AppState} from '../app.service';
 
 const HEADER = {
   headers: new Headers({
@@ -28,7 +29,8 @@ export class UsersService {
 
 
   // Inject the `AppStore` into the constructor with a type of `AppStore`
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private appState: AppState) {
 
     // Bind an observable of our `Users` to `UserService`
     // Since this is essentially a `key, value` system, we can
@@ -72,7 +74,10 @@ export class UsersService {
         this.http.post('/api/auth/logout', '', HEADER)
             .map((res: Response) => res)
             .subscribe(
-              success => console.log(success.text()),
+              success => {
+                  console.log(success.text());
+                  this.appState.set('isLoggedIn', false);
+              },
               error =>  console.log(<any>error.text())
             );
     }

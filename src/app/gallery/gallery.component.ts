@@ -23,6 +23,8 @@ import {GalleryList} from './gallery-list.component';
 
 import {FileUploaderComponent} from '../shared/file-uploader/file-uploader';
 
+import {AppState} from '../app.service';
+
 @Component({
   selector: 'Gallery',
   providers: [GalleryService],
@@ -39,7 +41,8 @@ export class Gallery {
 
   constructor(private galleryService: GalleryService,
               private store: Store<AppStore>,
-              private usersService: UsersService
+              private usersService: UsersService,
+              private appState: AppState
             ) {
 
     this.galleries = galleryService.loadGallerys()
@@ -47,6 +50,10 @@ export class Gallery {
 
     console.log(this.galleries);
     this.getCureentUser();
+  }
+
+  isLoggedIn() {
+      return this.appState.get('isLoggedIn');
   }
 
   getCureentUser() {
