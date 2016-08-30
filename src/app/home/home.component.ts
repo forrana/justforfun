@@ -12,6 +12,9 @@ import {AccordionGroup} from
 import {ProjectsPreview} from '../projects/project-preview.component';
 
 import {FeedbacksPreview} from '../feedbacks/feedback-preview.component';
+
+import {GalleryPreview} from '../gallery/gallery-preview.component';
+
 // Import NgFor directive
 import {NgFor} from '@angular/common';
 
@@ -32,7 +35,8 @@ import {NgFor} from '@angular/common';
       AccordionGroup,
       NgFor,
       ProjectsPreview,
-      FeedbacksPreview
+      FeedbacksPreview,
+      GalleryPreview
   ],
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [ ],

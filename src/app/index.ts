@@ -41,6 +41,9 @@ import {selectedProject} from './projects/selected-project.reducer';
 import {FeedbackService} from './feedbacks/feedback.service';
 import {feedbacks} from './feedbacks/feedback.reducer';
 import {selectedFeedback} from './feedbacks/selected-feedback.reducer';
+
+import {GalleryService} from './gallery/gallery.service';
+
 //# Application Redux Stores
 //
 //** Redux stores for use with our Angular 2 app **

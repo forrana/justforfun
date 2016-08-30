@@ -29,5 +29,6 @@ export class GalleryList {
   // Here we pick up the `expenses` collection by annotating our local
   // `expenses` property with `@Input()`
   @Input() galleries: Array<any>;
+  @Input() limit: Number;
   // Two event outputs for when a expense is selected or deleted
 }
