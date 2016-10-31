@@ -1,0 +1,12 @@
+<div>
+  <feedback-detail
+    (saved)="saveFeedback($event)" (cancelled)="resetFeedback($event)"
+    [feedback]="selectedFeedback | async">Pick your Fancy:
+  </feedback-detail>
+</div>
+<div>
+  <feedback-list [feedbacks]="feedbacks | async"
+    [readOnly]="true"
+    (selected)="selectedFeedback($event)" (deleted)="deleteFeedback($event)">
+</feedback-list>
+</div>

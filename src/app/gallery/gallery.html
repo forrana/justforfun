@@ -1,0 +1,7 @@
+<div *ngIf="isLoggedIn() === true">
+    <file-uploader></file-uploader>
+</div>
+<div>
+    <gallery-list [galleries]="galleries | async">
+    </gallery-list>
+</div>

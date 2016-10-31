@@ -1,0 +1,28 @@
+<md-content class="card-container">
+  <md-card x-large class="sample-content">
+      <h2 *ngIf="selectedFeedback._id">Поправить {{originalTitle}}</h2>
+      <h2 *ngIf="!selectedFeedback._id">Оставить отзыв</h2>
+  </md-card>
+  <md-card>
+    <md-card-title>Мой отзыв </md-card-title>
+    <md-card-content>
+    <form novalidate>
+        Я,
+            <md-input [(ngModel)]="selectedFeedback.name"
+            placeholder="мое имя?" type="text"></md-input>
+                , решил оставить отзыв
+                <md-input-container>
+                  <textarea [(ngModel)]="selectedFeedback.description"
+                            placeholder="мое мнение"
+                  ></textarea>
+                </md-input-container>
+    </form>
+      <button class="btn btn-warning" type="submit" (click)="cancelled.emit(selectedFeedback)">
+        Отменить
+      </button>
+      <button class="btn btn-success" type="submit" (click)="saved.emit(selectedFeedback)">
+        Сохранить
+      </button>
+  </md-card-content>
+  </md-card>
+</md-content>

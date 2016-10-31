@@ -25,6 +25,8 @@ import {UsersService} from './users.service';
 import {FileService} from './file.service';
 import {User} from './users.store';
 
+import {AppState} from '../app.service';
+
 @Component({
   selector: 'user-login',
   template: require('./user-login.html'),
@@ -35,6 +37,7 @@ export class Login {
     router: Router;
 
     constructor(private usersService: UsersService,
+                private appState: AppState,
                 _router: Router) {
         this.router = _router;
         this.usersService.getFilesListByCategory('def');
@@ -48,8 +51,13 @@ export class Login {
         this.usersService
         .login(username, password)
         .subscribe(
-          success => this.router.parent.navigate(['/Expenses']),
-          error =>  {this.statusMessage = <any>error.text(); console.log(error)}
+          success => {
+              this.router.parent.navigate(['/Projects']);
+              this.appState.set('isLoggedIn', true);
+          },
+          error =>  {
+              this.statusMessage = <any>error.text(); console.log(error)
+          }
         );
         this.usersService.getFilesListByCategory('def');
 

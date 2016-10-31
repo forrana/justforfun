@@ -1,15 +1,17 @@
 import multer from 'multer';
 import fs from 'fs';
-const DIR = './uploads/'
+
+const DIR = './uploads/';
+const PATH = './dist/src/assets/uploads/';
 
 export default (app, router, auth) => {
 
-    let upload = multer({dest: './src/assets/uploads/'}).single('file');
+    let upload = multer({dest: PATH}).single('file');
 
     router.route('/files')
 
     .get((req, res) => {
-        fs.readdir('./src/assets/uploads/', function(err, items) {
+        fs.readdir(PATH, function(err, items) {
             for (var i=0; i<items.length; i++) {
                 console.log(items[i]);
             }

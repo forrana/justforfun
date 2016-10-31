@@ -1,0 +1,10 @@
+<md-content class="gallery-container"
+            *ngFor="let photo of galleries; let i = index"
+>
+    <md-card
+            *ngIf="!limit || i < limit"
+            class="card-container gallery-image"
+            [ngStyle]="{'background-image': 'url(/assets/uploads/'+photo+ ')'}"
+        >
+    </md-card>
+</md-content>

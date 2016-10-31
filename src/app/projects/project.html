@@ -1,0 +1,12 @@
+<div>
+  <project-detail
+    (saved)="saveProject($event)" (cancelled)="resetProject($event)"
+    [project]="selectedProject | async">Pick your Fancy:
+  </project-detail>
+</div>
+<div>
+  <project-list [projects]="projects | async"
+    [readOnly]="true"
+    (selected)="selectedProject($event)" (deleted)="deleteProject($event)">
+</project-list>
+</div>

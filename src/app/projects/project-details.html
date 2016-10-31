@@ -1,0 +1,38 @@
+<md-content class="card-container" *ngIf="isLoggedIn() === true">
+  <md-card x-large class="sample-content">
+      <h2 *ngIf="selectedProject._id">Поправить {{originalTitle}}</h2>
+      <h2 *ngIf="!selectedProject._id">Добавить новую программу</h2>
+  </md-card>
+  <md-card>
+    <md-card-title>Коротко о программе</md-card-title>
+    <md-card-content>
+    <form novalidate>
+        Я, <b>{{user.userName}}</b>
+                <!--md-input [(ngModel)]="userName"
+                placeholder="Мое погоняло" type="text" disabled></md-input-->
+                , решил добавить новую программу, назовем ее
+                <md-input [(ngModel)]="selectedProject.name"
+                placeholder="как назвать?" type="text"></md-input>.
+          Коротко ее можно описать вот так <md-input [(ngModel)]="selectedProject.description"
+            placeholder="пара слов" type="text"></md-input>.
+          А что бы можно было потом добавить сортировку, помечу Я ее так:
+            <div *ngFor="let tag of selectedProject.tags">
+              <input [(ngModel)]="tag.name" placeholder="К чему бы его отнести?"
+              type="text">
+              <button type="button" class="btn btn-danger" (click)="deleteTag(tag)">
+                X
+              </button>
+            </div>
+            <button type="button" class="btn btn-default" (click)="newTag()">
+                Добавить метку
+            </button>
+    </form>
+      <button class="btn btn-warning" type="submit" (click)="cancelled.emit(selectedProject)">
+        Отменить
+      </button>
+      <button class="btn btn-success" type="submit" (click)="saved.emit(selectedProject)">
+        Сохранить
+      </button>
+  </md-card-content>
+  </md-card>
+</md-content>

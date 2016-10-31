@@ -13,39 +13,36 @@
 
 // Load our API routes for user authentication
 import authRoutes from './routes/_authentication.router.js';
-
 // Load our API routes for the `todo` component
 import todoRoutes from './routes/_todo.router.js';
-
 // Load our API routes for the `recipe` component
 import recipeRoutes from './routes/_recipe.router.js';
-
 // Load our API routes for the `recipe` component
 import expenseRoutes from './routes/_expense.router.js';
 
 import fireRoutes from './routes/_fire-eqip.router.js';
 
-import fileRoutes from './routes/_file-upload.router.js';
-
 import noteRoutes from './routes/_note.router.js';
+
+import feedbackRoutes from './routes/_feedbacks.router.js';
+
+import projectRoutes from './routes/_project.router.js';
+
+import fileRoutes from './routes/_file-upload.router.js';
 
 export default (app, router, passport) => {
 
   // ### Express Middlware to use for all requests
   router.use((req, res, next) => {
-
     console.log('I sense a disturbance in the force...'); // DEBUG
-
     // Make sure we go to the next routes and don't stop here...
     next();
   });
 
   // Define a middleware function to be used for all secured routes
   let auth = (req, res, next) => {
-
     if (!req.isAuthenticated())
       res.send(401);
-
     else
       next();
   };
@@ -70,7 +67,6 @@ export default (app, router, passport) => {
   // Pass in our Express app and Router.
   // Also pass in auth & admin middleware and Passport instance
   authRoutes(app, router, passport, auth, admin);
-
   // #### RESTful API Routes
 
   // Pass in our Express app and Router
@@ -84,16 +80,19 @@ export default (app, router, passport) => {
 
   fireRoutes(app, router, auth);
 
+  feedbackRoutes(app, router, auth);
+
+  projectRoutes(app, router, auth);
+
   fileRoutes(app, router, auth);
 
-	// All of our routes will be prefixed with /api
+  // All of our routes will be prefixed with /api
   app.use('/api', router);
 
   // ### Frontend Routes
 
   // Route to handle all Angular requests
   app.get('*', (req, res) => {
-
     // Load our src/app.html file
     //** Note that the root is set to the parent of this folder, ie the app root **
     res.sendFile('/dist/index.html', { root: __dirname + "/../"});

@@ -36,6 +36,12 @@ import {Expenses} from './expenses/expenses.component';
 
 import {FireEqips} from './fire-eqip/fire-eqip.component';
 
+import {Projects} from './projects/project.component';
+
+import {Feedbacks} from './feedbacks/feedback.component';
+
+import {Gallery} from './gallery/gallery.component';
+
 import {Signup} from './user/user-signup.component';
 import {Login} from './user/user-login.component';
 
@@ -61,38 +67,32 @@ import {FileService} from './shared/components/file-uploader/file.service';
       <md-toolbar color="primary">
           <span>{{ name }}</span>
           <span class="fill"></span>
-          <!--button md-button router-active [routerLink]=" ['Index'] ">
-            Index
-          </button>
           <button md-button router-active [routerLink]=" ['Home'] ">
-            Home
-          </button-->
-          <!--button md-button router-active [routerLink]=" ['Todo'] ">
-            Todo
+            Главная
           </button>
-          <button md-button router-active [routerLink]=" ['Recipes'] ">
-            Recipes
-          </button-->
-          <button md-button router-active [routerLink]=" ['Signup'] ">
+          <!--button md-button router-active [routerLink]=" ['Signup'] ">
             Signup
           </button>
           <button md-button router-active [routerLink]=" ['Login'] ">
             Login
+          </button-->
+          <button md-button router-active [routerLink]=" ['Projects'] ">
+            Программы
           </button>
-          <button md-button router-active [routerLink]=" ['Expenses'] ">
-            Expenses
+          <button md-button router-active [routerLink]=" ['Gallery'] ">
+            Галлерея
           </button>
-          <button md-button router-active [routerLink]=" ['FireEqips'] ">
-            FireEqips
+          <button md-button router-active [routerLink]=" ['Feedbacks'] ">
+            Отзывы
           </button>
           <button md-button router-active [routerLink]=" ['About'] ">
-            About
+            О нас
           </button>
-          <button md-button (click)="usersService.logout()"
+          <!--button md-button (click)="usersService.logout()"
                   [routerLink]=" ['Login'] "
           >
             Logout
-          </button>
+          </button-->
       </md-toolbar>
 
       <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading">
@@ -104,28 +104,30 @@ import {FileService} from './shared/components/file-uploader/file.service';
 
       <footer>
         <img [src]="angularLogo" width="7%">
-        <span>Expenses calculation page by <a [href]="url">@Alex Forrana</a></span>
+        <span>Irden fire theater page</span>
       </footer>
     </md-content>
   `
 })
 @RouteConfig([
-  // { path: '/', name: 'Index', component: Home, useAsDefault: true },
-  // { path: '/home',  name: 'Home',  component: Home },
+  { path: '/', component: Home, name: 'Home',  useAsDefault: true },
+  { path: '/home', component: Home,  name: 'Home'},
   // { path: '/todo', component: Todo, name: 'Todo' },
   // { path: '/redux', component: Recipes, name: 'Recipes' },
-  { path: '/', component: Login, name: 'Login', useAsDefault: true },
+  // { path: '/', component: Login, name: 'Login', useAsDefault: true },
   { path: '/login', component: Login, name: 'Login'},
   { path: '/sugnup', component: Signup, name: 'Signup' },
-  { path: '/expenses', component: Expenses, name: 'Expenses' },
   { path: '/eqips', component: FireEqips, name: 'FireEqips' },
+  { path: '/projects', component: Projects, name: 'Projects' },
+  { path: '/gallery', component: Gallery, name: 'Gallery' },
+  { path: '/feedbacks', component: Feedbacks, name: 'Feedbacks' },
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
   { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
 ])
 export class App {
   angularLogo = 'assets/img/angular-logo.png';
-  name = 'Expenses calculation page';
+  name = 'Irden fire theater page';
   url = 'https://github.com/forrana';
   socket;
   // Pass in our application `state`
