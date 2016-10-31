@@ -41,6 +41,7 @@ import {Login} from './user/user-login.component';
 
 import {UsersService} from './user/users.service';
 
+import {FileService} from './shared/components/file-uploader/file.service';
 /*
  * App Component
  * Top Level Component

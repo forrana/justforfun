@@ -1,8 +1,8 @@
-    <div class='flex-container'>
+<md-content>
     <md-card>
         <md-card-title>Login</md-card-title>
         <md-card-content>
-            <form novalidate>
+            <md-form novalidate>
                 <div>
                     <md-input [(ngModel)]="username"
                     placeholder="Enter login" type="text"></md-input>
@@ -11,7 +11,7 @@
                     <md-input [(ngModel)]="password"
                     placeholder="Enter password" type="password"></md-input>
                 </div>
-            </form>
+            </md-form>
         </md-card-content>
 		<md-card-content>
 		{{statusMessage}}
@@ -31,4 +31,4 @@
         </div>
         </md-card-content>
     </md-card>
-    </div>
+</md-content>

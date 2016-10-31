@@ -37,6 +37,7 @@ export class UsersService {
   }
 
   private _loginApi = '/api/login';
+  private _fileApi = '/api/files';
 
   private handleError (error: Response) : Observable<any> {
     // in a real world app, we may send the server to some remote logging infrastructure
@@ -48,6 +49,17 @@ export class UsersService {
   logger(text) {
       console.log('text:');
       console.log(text);
+  }
+
+  getFilesListByCategory(category) {
+        let headers = new Headers();
+
+        return this.http.get(this._fileApi)
+            .map((res: Response) => res)
+            .subscribe(
+              success => console.log(success.text()),
+              error =>  console.log(<any>error.text())
+            );
   }
 
   signup(username, password, email) {
@@ -78,6 +90,7 @@ export class UsersService {
     }
 
     isLoggedIn() {
+
           return this.http.get('/api/auth/loggedin')
               .map((res: Response) => res)
     }

@@ -50,6 +50,9 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 
+// Load file uploader
+import multer from 'multer';
+import fs from 'fs';
 // # Configuration
 
 // Load Socket.io server functionality
@@ -111,6 +114,16 @@ app.use(passport.initialize());
 // Persistent login sessions
 app.use(passport.session());
 
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    next();
+}
+
+app.use(allowCrossDomain);
 // ## Routes
 
 // Get an instance of the express Router

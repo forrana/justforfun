@@ -22,6 +22,7 @@ import {Router} from 'angular2/router';
 import * as io from 'socket.io-client'
 
 import {UsersService} from './users.service';
+import {FileService} from './file.service';
 import {User} from './users.store';
 
 @Component({
@@ -36,6 +37,7 @@ export class Login {
     constructor(private usersService: UsersService,
                 _router: Router) {
         this.router = _router;
+        this.usersService.getFilesListByCategory('def');
     }
 
     login(username, password) {
@@ -49,6 +51,8 @@ export class Login {
           success => this.router.parent.navigate(['/Expenses']),
           error =>  {this.statusMessage = <any>error.text(); console.log(error)}
         );
+        this.usersService.getFilesListByCategory('def');
+
     }
 
     openSignup() {

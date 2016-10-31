@@ -25,6 +25,10 @@ import expenseRoutes from './routes/_expense.router.js';
 
 import fireRoutes from './routes/_fire-eqip.router.js';
 
+import fileRoutes from './routes/_file-upload.router.js';
+
+import noteRoutes from './routes/_note.router.js';
+
 export default (app, router, passport) => {
 
   // ### Express Middlware to use for all requests
@@ -70,6 +74,8 @@ export default (app, router, passport) => {
   // #### RESTful API Routes
 
   // Pass in our Express app and Router
+  noteRoutes(app, router);
+
   todoRoutes(app, router);
 
   recipeRoutes(app, router);
@@ -78,8 +84,10 @@ export default (app, router, passport) => {
 
   fireRoutes(app, router, auth);
 
+  fileRoutes(app, router, auth);
+
 	// All of our routes will be prefixed with /api
-    app.use('/api', router);
+  app.use('/api', router);
 
   // ### Frontend Routes
 

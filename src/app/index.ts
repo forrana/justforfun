@@ -33,6 +33,9 @@ import {selectedExpense} from './expenses/selected-expense.reducer';
 import {FireEqipService} from './fire-eqip/fire-eqip.service';
 import {eqips} from './fire-eqip/fire-eqip.reducer';
 import {selectedFireEqip} from './fire-eqip/selected-fire-eqip.reducer';
+
+import {FileService} from './shared/components/file-uploader/file.service';
+
 //# Application Redux Stores
 //
 //** Redux stores for use with our Angular 2 app **

@@ -10,6 +10,7 @@
     "uglify-js": "registry:dt/uglify-js#2.6.1+20160316155526",
     "webpack": "registry:dt/webpack#1.12.9+20160321060707",
     "angular2-beta-to-rc-alias": "file:./node_modules/@angularclass/angular2-beta-to-rc-alias/src/beta-17/typings.d.ts",
-    "socket.io-client": "file:./modules/socket.io-client.d.ts"
+    "socket.io-client": "file:./modules/socket.io-client.d.ts",
+    "ng2-file-upload": "file:./node_modules/ng2-file-upload/ng2-file-upload.d.ts"
   }
 }

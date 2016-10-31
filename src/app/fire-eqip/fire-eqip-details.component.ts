@@ -23,9 +23,12 @@ import {FireEqip} from './fire-eqip.store';
 import {AppStore} from '../app.store';
 import {DatePipe} from "@angular/common";
 
+import {FileUploaderComponent} from '../shared/components/file-uploader/file-uploader';
+
 @Component({
   selector: 'fire-eqip-detail',
   template: require('./fire-eqip-details.html'),
+  directives: [FileUploaderComponent],
 })
 export class FireEqipDetails {
   originalTitle: string;
