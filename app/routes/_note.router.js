@@ -131,6 +131,8 @@ export default (app, router) => {
       // DEBUG
       console.log(`Attempting to delete todo with id: ${req.params.note_id}`);
 
+
+
       Note.remove({
         _id : req.params.note_id
         }, (err, note) => {
@@ -139,13 +141,7 @@ export default (app, router) => {
           res.send(err);
 
         console.log('Todo successfully deleted!');
-
-        Note.find((err, notes) => {
-          if(err)
-            res.send(err);
-
-          res.json(notes);
-        });
+        res.json(note);
       });
     });
 };
